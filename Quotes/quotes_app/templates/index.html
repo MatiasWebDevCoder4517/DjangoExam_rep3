@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block body %}
+
+<title>{% block title %} Register page{% endblock %}</title>
+
+<div class="container">
+    <div class="row mt-5 pt-3">
+        <h1>WELCOME!<p class="text-danger">FAVORITES QUOTES WEB APP</p>
+        </h1>
+        <div class="col-md-5 offset-md-2">
+
+
+            <div class="card-body">
+
+                <!--#######################################################################################-->
+                {% if messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <ul class="messages">
+                        {% for message in messages %}
+
+                        <li>{{ message }}</li>
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                      {% endfor %}
+                </div>
+                {% endif %}
+                <!--#######################################################################################-->
+
+                <h2>REGISTRATION</h2>
+                <hr />
+                <form action="/main" method="POST">
+                    {% csrf_token %}
+
+                    <h4>Email:<input class="form-control text-light" type="text" name="email"></h4>
+                    <br>
+                    <h4>Password:<input class="form-control text-light" type="password" name="password"></h4>
+                    <br>
+                    <h4>Confirm Password:<input class="form-control text-light" type="password" name="confirm_password">
+                    </h4>
+
+                    <input class="btn btn-primary btn-block" type="submit" value="REGISTER"></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

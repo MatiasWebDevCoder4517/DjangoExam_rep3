@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block body %}
+
+<title>{% block title %} User Quote Posts {% endblock %}</title>
+
+
+<div class="container">
+
+    <div class="row mt-5 pt-3">
+        <div class="col-md-5 offset-md-2">
+            <div class="card my-3 shadow">
+                <div class="card-body">
+
+                    <!--#############################################################-->
+                    {% if messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                          {% endfor %}
+                    </div>
+                    {% endif %}
+                    <!--###############################################################-->
+
+
+                    <div>
+                        <button type="submit">
+                            <a class="btn btn-primary" href='/dashboard'> Go to Dashboard </a>
+                        </button>
+
+                    </div>
+                    <br>
+                    <br>
+
+                    <h1>Posted by: <strong>{{author.email}}</strong></h1>
+                    <br>
+                    <h2> Count: {{quotes.all.count}}</h2>
+                    <br>
+                    <br>
+
+                    {% for quote in quotes %}
+                    <p class="text-primary">{{ quote.quoted_by }}</p>
+                    <p class="text-danger">{{ quote.quote_text }}</p>
+                    <br>
+                    <button type="submit">
+                        <a class="btn btn-primary" href='/edit/{{ quote.id }}'> Edit Quote </a>
+                    </button>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

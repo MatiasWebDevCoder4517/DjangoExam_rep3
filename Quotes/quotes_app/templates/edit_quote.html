@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block body %}
+
+<title>{% block title %} User Quote Posts {% endblock %}</title>
+
+
+<div class="container">
+
+    <div class="row mt-5 pt-3">
+        <div class="col-md-5 offset-md-2">
+            <div class="card my-3 shadow">
+                <div class="card-body">
+
+                    <!--#############################################################-->
+                    {% if messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                          {% endfor %}
+                    </div>
+                    {% endif %}
+                    <!--###############################################################-->
+
+                    <!-- RIGHT HERE GOES THE EDIT OPTIONS -->
+
+                    <button type="submit">
+                        <a class="btn btn-primary" href='/dashboard'> Go to Dashboard </a>
+                    </button>
+                    <h2> Edit Quote:</h2>
+                    <br>
+                    <form action='/edit' method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="quoted_by"> Quoted By: </label>
+                            <textarea name='quote_author' rows='1' cols='50' class="form-control" id="quoted_by"
+                                placeholder='Quoted by..'> </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="message"> Message: </label>
+                            <textarea name='quote' rows='3' cols='50' class="form-control" id="quoted_by"
+                                placeholder='Your quote here..'> </textarea><br>
+                        </div>
+
+                        <button type="submit" class="btn btn-success"> Submit </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block body %}
+
+<title>{% block title %} Login Page{% endblock %}</title>
+
+<div class="container">
+    <div class="row mt-5 pt-3">
+        <div class="col-md-5 offset-md-2">
+
+            <div class="card-body">
+                <!--#######################################################################################-->
+                {% if messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <ul class="messages">
+                        {% for message in messages %}
+
+                        <li>{{ message }}</li>
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                      {% endfor %}
+                </div>
+                {% endif %}
+                <!--#######################################################################################-->
+                <h2>LOGIN</h2>
+                <hr />
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+
+                    <h4>Email:<input class="form-control text-light" type="text" name="email"></h4>
+                    <br>
+                    <h4>Password:<input class="form-control text-light" type="password" name="password"></h4>
+                    <br>
+
+
+                    <input class="btn btn-primary btn-block" type="submit" value="Login"></p>
+                </form>
+                <a class="btn btn-info mr-md-3 mb-2 mb-md-0" href="/">Go Home Page</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
